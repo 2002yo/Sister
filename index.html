@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Akki 💗</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #fff0f6;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      max-width: 500px;
+      z-index: 2;
+    }
+
+    .bear {
+      font-size: 90px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #d63384;
+    }
+
+    button {
+      padding: 12px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .yes {
+      background: #ffccd5;
+    }
+
+    .no {
+      background: #d63384;
+      color: white;
+    }
+
+    .message {
+      display: none;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .floating {
+      position: absolute;
+      bottom: -50px;
+      animation: float 6s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="bear" id="bear">💐<br>🧸</div>
+
+    <h1 id="question">Are you angry with me?</h1>
+
+    <button class="yes" id="yesBtn" onclick="yesClicked()">Yes 😒</button>
+    <button class="no" id="noBtn" onclick="noClicked()">No 💗</button>
+
+    <div class="message" id="message">
+      <h1>Sorry Akki 💗</h1>
+
+      <p>
+        I’m sorry if I made you feel like I was distant.
+        I didn’t mean to make you feel that way.
+      </p>
+
+      <p>
+        I know we usually talk a lot, and I missed that too.
+        I love you so much, and I’ll try to share little things with you more often.
+      </p>
+
+      <p>
+        Thank you for caring about me, even when I don’t always understand it at first.
+      </p>
+
+      <h2>Love you always 🌷</h2>
+    </div>
+  </div>
+
+  <script>
+    let noScale = 1;
+    let yesScale = 1;
+
+    function yesClicked() {
+      const messages = [
+        "NOOOOOOOOO 😭 How can you be angry with me?",
+        "Akki pleaseee 🥺💗",
+        "That's illegal 😭",
+        "I refuse to believe this 😭🌷",
+        "Try again 😤💗",
+        "But I love youuuu 🧸💕",
+        "You can't be angry forever 😭"
+      ];
+
+      const randomMessage =
+        messages[Math.floor(Math.random() * messages.length)];
+
+      alert(randomMessage);
+
+      noScale += 0.25;
+      yesScale -= 0.08;
+
+      document.getElementById("noBtn").style.transform =
+        "scale(" + noScale + ")";
+
+      document.getElementById("yesBtn").style.transform =
+        "scale(" + Math.max(0.4, yesScale) + ")";
+    }
+
+    function noClicked() {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("bear").innerHTML = "🧸💐";
+      document.getElementById("yesBtn").style.display = "none";
+      document.getElementById("noBtn").style.display = "none";
+      document.getElementById("message").style.display = "block";
+
+      for (let i = 0; i < 80; i++) {
+        setTimeout(createFloatingEmoji, i * 40);
+      }
+
+      setInterval(createFloatingEmoji, 80);
+    }
+
+    function createFloatingEmoji() {
+      const emojis = [
+        "💗", "💕", "💖", "💝",
+        "🩷", "❤️", "🌷", "🌸",
+        "🌹", "💐", "✨", "🧸"
+      ];
+
+      const emoji = document.createElement("div");
+      emoji.classList.add("floating");
+
+      emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.fontSize = (20 + Math.random() * 35) + "px";
+      emoji.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 8000);
+    }
+  </script>
+
+</body>
+</html>
